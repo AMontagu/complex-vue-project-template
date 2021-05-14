@@ -8,17 +8,17 @@ const Student = ():Promise<RouteComponent> => import(/* webpackChunkName: "Stude
 
 const schoolRoutes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: '',
     name: 'ClassroomDetails',
     component: ClassroomDetails
   },
   {
-    path: '/students',
+    path: 'students',
     name: 'StudentsList',
     component: StudentsList
   },
   {
-    path: '/student',
+    path: 'student',
     name: 'Student',
     component: Student,
     children: StudentChildren

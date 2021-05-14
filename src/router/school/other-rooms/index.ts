@@ -5,12 +5,12 @@ const Administration = ():Promise<RouteComponent> => import(/* webpackChunkName:
 
 const otherRoomsRoutes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: '',
     name: 'Refectory',
     component: Refectory
   },
   {
-    path: '/administration',
+    path: 'administration',
     name: 'Administration',
     component: Administration
   }

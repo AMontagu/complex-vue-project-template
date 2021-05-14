@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 import { RouteLocationRaw } from 'vue-router'
 
 interface NavigationLink {
@@ -7,7 +7,7 @@ interface NavigationLink {
 }
 
 interface ReturnNavigation {
-  navigationLinks: Array<NavigationLink>
+  navigationLinks: Ref<Array<NavigationLink>>
 }
 
 export const useSchoolNavigations = (): ReturnNavigation => {
@@ -27,6 +27,40 @@ export const useSchoolNavigations = (): ReturnNavigation => {
     {
       to: { name: 'OtherRooms' },
       name: 'OtherRooms'
+    }
+  ])
+
+  return {
+    navigationLinks
+  }
+}
+
+export const useClassroomNavigations = (): ReturnNavigation => {
+  const navigationLinks = ref([
+    {
+      to: { name: 'ClassroomDetails' },
+      name: 'ClassroomDetails'
+    },
+    {
+      to: { name: 'StudentsList' },
+      name: 'StudentsList'
+    }
+  ])
+
+  return {
+    navigationLinks
+  }
+}
+
+export const useOtherRoomsNavigations = (): ReturnNavigation => {
+  const navigationLinks = ref([
+    {
+      to: { name: 'Refectory' },
+      name: 'Refectory'
+    },
+    {
+      to: { name: 'Administration' },
+      name: 'Administration'
     }
   ])
 
