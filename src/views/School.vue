@@ -1,15 +1,25 @@
 <template>
   <div>
     <h1>School App</h1>
-    <MyCompanyNavigation />
+    <MyCompanyNavigation :navigationLinks="navigationLinks" />
     <router-view/>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'School'
-}
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+import { useSchoolNavigations } from '@/composables/navigationsLinks'
+
+export default defineComponent({
+  name: 'School',
+  setup () {
+    const { navigationLinks } = useSchoolNavigations()
+    return {
+      navigationLinks
+    }
+  }
+})
 </script>
 
 <style>
