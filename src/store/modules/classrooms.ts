@@ -6,6 +6,7 @@ interface ClassroomNormalized {
   [key: string]: Classroom
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const classroomModule: Module<any, any> = {
   namespaced: true,
   state: {
@@ -22,7 +23,15 @@ const classroomModule: Module<any, any> = {
   mutations: {
     setClassrooms (state, classrooms:Classroom[]) {
       state.classroomsNormalized = classrooms.reduce((acc, classroom) => {
-        if (classroom.id) {
+        if (!classroom.id) {
+          return acc
+        }
+        const alreadyFetchedClassroom = state.classroomsNormalized[classroom.id.toString()]
+        // If classroom already exist we just actualize it's data
+        if (alreadyFetchedClassroom) {
+          alreadyFetchedClassroom.setData(classroom.rawData)
+          acc[classroom.id.toString()] = alreadyFetchedClassroom
+        } else { // Else we set the new classroom
           acc[classroom.id.toString()] = classroom
         }
         return acc

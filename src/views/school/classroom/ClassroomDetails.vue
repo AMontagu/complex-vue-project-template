@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts">
-import classroomService from '@/services/ClassroomService'
 import ClassRoom from '@/models/Classroom'
 import { mapActions, mapGetters } from 'vuex'
 
@@ -22,12 +21,16 @@ export default defineComponent({
     classroomId ():string {
       return this.$route.params.classroomId as string
     },
-    classroom () {
-      return this.getClassroomById(this.classroomId)
+    classroom ():ClassRoom {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return (this.getClassroomById as any)(this.classroomId)
     }
   },
   async created () {
-    this.fetchDetailsClassroom(this.$route.params.classroomId as string)
+    if (!this.classroom || !this.classroom.detailsFetched) {
+      console.log('FETCHING DETAILS')
+      this.fetchDetailsClassroom(this.$route.params.classroomId as string)
+    }
   },
   methods: {
     ...mapActions('classrooms', ['fetchDetailsClassroom'])

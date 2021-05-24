@@ -12,6 +12,7 @@ export default class Classroom implements ClassroomInterface {
   id: null|number = null;
   name = '';
   teacher: null|UserInterface|User = null;
+  rawData: null|ClassroomInterface = null;
 
   constructor (classroom:ClassroomInterface) {
     this.setData(classroom)
@@ -25,6 +26,7 @@ export default class Classroom implements ClassroomInterface {
     }
 
     Object.assign(this, classroom)
+    this.rawData = classroom
   }
 }
 

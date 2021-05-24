@@ -89,7 +89,7 @@ export default defineComponent({
       })
     }
   },
-  emits: ['update:options'],
+  emits: ['update:options', 'row-click'],
   computed: {
     firstVisibleIndex ():number {
       return ((this.options.page ?? 1) - 1) * this.options.page_size ?? 10
