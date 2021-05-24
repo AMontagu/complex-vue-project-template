@@ -4,7 +4,7 @@ const StudentDetails = ():Promise<RouteComponent> => import(/* webpackChunkName:
 
 const StudentRoutes: Array<RouteRecordRaw> = [
   {
-    path: '',
+    path: ':studentId',
     name: 'StudentDetails',
     component: StudentDetails
   }

@@ -1,5 +1,5 @@
 import myAppClient from '@/setup/myAppClient'
-import Student, { StudentInterface } from '@/models/Student'
+import Student from '@/models/Student'
 
 class StudentService {
   async getListStudent (classroomId:string): Promise<Student[]> {

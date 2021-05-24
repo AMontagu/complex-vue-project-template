@@ -41,7 +41,7 @@ module.exports = {
 
       app.get('/api/classrooms/:classroomId', (req, res) => {
         const fakeClassroom = {
-          id: req.params.classroomId,
+          id: parseInt(req.params.classroomId),
           name: 'First grade 1',
           teacher: {
             id: 1,
@@ -71,7 +71,7 @@ module.exports = {
 
       app.get('/api/students/:studentId', (req, res) => {
         const fakeStudents = {
-          id: req.params.studentId,
+          id: parseInt(req.params.studentId),
           name: 'Bob'
         }
         return res.send(fakeStudents)

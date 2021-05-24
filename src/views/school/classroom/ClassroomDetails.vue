@@ -28,8 +28,8 @@ export default defineComponent({
   },
   async created () {
     if (!this.classroom || !this.classroom.detailsFetched) {
-      console.log('FETCHING DETAILS')
-      this.fetchDetailsClassroom(this.$route.params.classroomId as string)
+      console.log('FETCHING DETAILS CLASSROOM')
+      this.fetchDetailsClassroom(this.classroomId)
     }
   },
   methods: {

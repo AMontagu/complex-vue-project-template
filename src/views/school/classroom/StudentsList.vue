@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
-import { mapRepos, ModelsOrRepositories } from '@vuex-orm/core'
-import Student, { StudentInterface } from '@/models/Student'
+import { mapRepos } from '@vuex-orm/core'
+import Student from '@/models/Student'
 import { defineComponent } from 'vue'
-import StudentService from '@/services/StudentService'
+import studentService from '@/services/StudentService'
 
 export default defineComponent({
   name: 'StudentList',
@@ -29,11 +29,21 @@ export default defineComponent({
     }
   },
   async created () {
-    const students = await StudentService.getListStudent(this.classroomId)
-    this.studentRepo.insert(students)
+    const students = await studentService.getListStudent(this.classroomId)
+    students.forEach(student => {
+      if (!student.id) {
+        console.log('return')
+        return
+      }
+      if (!this.studentRepo.find(student.id)) {
+        this.studentRepo.insert(student)
+      } else {
+        this.studentRepo.update(student)
+      }
+    })
   },
   methods: {
-    goToStudent (student:StudentInterface):void {
+    goToStudent (student:Student):void {
       if (!student.id) {
         return
       }
