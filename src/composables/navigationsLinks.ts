@@ -21,10 +21,6 @@ export const useSchoolNavigations = (): ReturnNavigation => {
       name: 'ClassRoomsList'
     },
     {
-      to: { name: 'Classroom' },
-      name: 'Classroom'
-    },
-    {
       to: { name: 'OtherRooms' },
       name: 'OtherRooms'
     }
@@ -35,14 +31,14 @@ export const useSchoolNavigations = (): ReturnNavigation => {
   }
 }
 
-export const useClassroomNavigations = (): ReturnNavigation => {
+export const useClassroomNavigations = (classroomId:string): ReturnNavigation => {
   const navigationLinks = ref([
     {
-      to: { name: 'ClassroomDetails' },
+      to: { name: 'ClassroomDetails', params: { classroomId } },
       name: 'ClassroomDetails'
     },
     {
-      to: { name: 'StudentsList' },
+      to: { name: 'StudentsList', params: { classroomId } },
       name: 'StudentsList'
     }
   ])

@@ -20,7 +20,7 @@ const schoolRoutes: Array<RouteRecordRaw> = [
     component: ClassroomsList
   },
   {
-    path: 'classroom',
+    path: 'classroom/:classroomId',
     name: 'Classroom',
     component: Classroom,
     children: ClassroomsChildren
