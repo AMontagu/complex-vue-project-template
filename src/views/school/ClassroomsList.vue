@@ -2,7 +2,7 @@
   <div>
     <h1>ClassroomList</h1>
     <SimpleDatatable
-      :items="items"
+      :items="getClassrooms"
       :headers="['id', 'name']"
       @row-click="goToClassroom"
     />
@@ -11,22 +11,21 @@
 </template>
 
 <script lang="ts">
-import classroomService from '@/services/ClassroomService'
 import ClassRoom from '@/models/Classroom'
+import { mapActions, mapGetters } from 'vuex'
 
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ClassroomList',
-  data () {
-    return {
-      items: [] as ClassRoom[]
-    }
+  computed: {
+    ...mapGetters('classrooms', ['getClassrooms'])
   },
   async created () {
-    this.items = await classroomService.getListClassroom()
+    this.fetchListClassrooms()
   },
   methods: {
+    ...mapActions('classrooms', ['fetchListClassrooms']),
     goToClassroom (classroom:ClassRoom):void {
       if (!classroom.id) {
         return
