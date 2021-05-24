@@ -16,13 +16,14 @@
       v-for="item in currentItems"
       :key="item[itemKey]"
       class="row"
+      @click="$emit('row-click', item)"
     >
       <div
-        v-for="(value, key) in item"
+        v-for="key in headers"
         :key="key"
         class="col width-40 border-right"
       >
-        <p>{{ value }}</p>
+        <p>{{ item[key] }}</p>
       </div>
     </div>
     <div class="mt-4 row">
@@ -96,6 +97,7 @@ export default defineComponent({
     lastVisibleIndex ():number {
       return (this.options.page ?? 1) * this.options.page_size ?? 10
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     currentItems ():Array<any> {
       if (this.lastVisibleIndex > this.items.length) {
         return this.items.slice(this.firstVisibleIndex)
@@ -104,6 +106,7 @@ export default defineComponent({
     }
   },
   methods: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     emitOptions (optionKey:string, value:any) {
       const newOptions = {
         ...this.options,
@@ -124,6 +127,7 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 auto;
+  cursor: pointer;
 }
 .col {
   display: flex;

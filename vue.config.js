@@ -2,7 +2,7 @@ module.exports = {
   devServer: {
     before: app => {
       // In production this is done by nginx.
-      app.all('/*', (req, res, next) => {
+      app.all('/api/*', (req, res, next) => {
         // CORS headers
         res.header('Access-Control-Allow-Origin', '*') // restrict it to the required domain
         res.header(
@@ -21,7 +21,7 @@ module.exports = {
         }
       })
 
-      app.get('/classrooms/', (req, res) => {
+      app.get('/api/classrooms/', (req, res) => {
         const fakeClassrooms = [
           {
             id: 1,
@@ -37,6 +37,18 @@ module.exports = {
           }
         ]
         return res.send(fakeClassrooms)
+      })
+
+      app.get('/api/classrooms/:classroomId', (req, res) => {
+        const fakeClassroom = {
+          id: req.params.classroomId,
+          name: 'First grade 1',
+          teacher: {
+            id: 1,
+            name: 'Awesome teacher'
+          }
+        }
+        return res.send(fakeClassroom)
       })
     }
   }

@@ -10,11 +10,13 @@
 import { defineComponent } from 'vue'
 
 import { useClassroomNavigations } from '@/composables/navigationsLinks'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'Classroom',
   setup () {
-    const { navigationLinks } = useClassroomNavigations()
+    const route = useRoute()
+    const { navigationLinks } = useClassroomNavigations(route.params.classroomId as string)
     return {
       navigationLinks
     }
