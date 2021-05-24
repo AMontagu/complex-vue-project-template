@@ -5,10 +5,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ClassroomList'
-}
+<script lang="ts">
+import classroomService from '@/services/ClassroomService'
+
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'ClassroomList',
+  async created () {
+    console.log(await classroomService.getListClassroom())
+  }
+})
 </script>
 
 <style>
