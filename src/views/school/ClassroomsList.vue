@@ -6,7 +6,6 @@
       :headers="['id', 'name']"
       @row-click="goToClassroom"
     />
-    <router-view/>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import classRoomModule from './modules/classrooms'
+import VuexORM from '@vuex-orm/core'
 
 export default createStore({
   state: {
@@ -10,5 +11,6 @@ export default createStore({
   },
   modules: {
     classrooms: classRoomModule
-  }
+  },
+  plugins: [VuexORM.install()]
 })
